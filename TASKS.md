@@ -61,6 +61,7 @@ The SCE is a rotating panel: individuals are recruited into the survey and usual
 Each individual is assigned a unique identifier (variable `userid`), which remains constant across all survey waves in which they are observed. Each survey wave is also assigned a unique identifier (variable `wid`).
 
 1. Write code to read all SCE files and merge them into a single `DataFrame`.
+    - **Implementation plan:** Use `glob` to find the files matching `data/SCE-*.csv` (this excludes `CPI.csv`) and read each one with pandas `pd.read_csv(..., sep=";", parse_dates=["date"])` (the files are semicolon-separated). Combine them with `pd.concat(..., ignore_index=True)` and sort by `userid` and `date`. Wrap this in a reusable function (e.g. `load_sce_data()`) in its own cell.
 2. Report the following statistics to get an idea of the sample size:
     1. Number of unique individuals in the dataset.
     2. Number of observations (rows) in the dataset.
